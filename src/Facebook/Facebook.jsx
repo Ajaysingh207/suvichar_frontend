@@ -6,21 +6,34 @@ import { toast } from "react-toastify";
 export default function Facebook() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const sendData = async (e) => {
     e.preventDefault();
 
     try {
-    
-      const response = await axios.post("http://localhost:3000/api/signup", {
-        userName,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:3000/api/signup",
+        {
+          userName,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
 
-      console.log( response.data);
-      const token = response.token
+      console.log("this is response line no 20", response.data);
+      const token = response.data.token;
       console.log(token);
-      
+      if (response.data.role === "user") {
+        navigate("/user");
+      } else if (response.data.role === "admin") {
+        navigate("/admin");
+      } else {
+        console.log("something went wrong");
+      }
+
       toast.success(response.data.message);
     } catch (error) {
       console.error(" Login failed:", error.response?.data || error.message);
@@ -28,7 +41,6 @@ export default function Facebook() {
         "Login failed: " + (error.response?.data?.message || error.message)
       );
     }
-    
   };
 
   return (
@@ -66,7 +78,10 @@ export default function Facebook() {
               Forgotten password?
             </p>
             <hr className="my-2" />
-            <button className="my-4 p-3 w-fit mx-auto   font-bold text-white rounded-md bg-green-400 hover:bg-green-300 cursor-pointer " onClick={()=>navigate("/registar")}>
+            <button
+              className="my-4 p-3 w-fit mx-auto   font-bold text-white rounded-md bg-green-400 hover:bg-green-300 cursor-pointer "
+              onClick={() => navigate("/registar")}
+            >
               Create New Account
             </button>
           </div>

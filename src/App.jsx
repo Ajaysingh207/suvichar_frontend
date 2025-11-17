@@ -5,6 +5,9 @@ import Fbregistar from "./Facebook/Fbregistar";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import User from "./Pages/Users/User";
+import Appbar from "./Pages/Admin/Appbar";
 
 export default function App() {
   return (
@@ -25,6 +28,9 @@ export default function App() {
         <Route path="/" element={<Facebook />} />
         <Route path="/microsoft" element={<Microsoft />} />
         <Route path="/registar" element={<Fbregistar />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/user" element={< User/>} />
+        <Route path="/appbar" element={< Appbar/>} />
       </Routes>
     </div>
   );
