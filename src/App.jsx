@@ -6,7 +6,8 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
-import User from "./Pages/Users/User";
+import UserChatPage from "./Pages/UserChatBox";
+
 import Appbar from "./Pages/Admin/Appbar";
 
 export default function App() {
@@ -29,7 +30,7 @@ export default function App() {
         <Route path="/microsoft" element={<Microsoft />} />
         <Route path="/registar" element={<Fbregistar />} />
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/user" element={< User/>} />
+       <Route path="/user/chat" element={<UserChatPage />} />
         <Route path="/appbar" element={< Appbar/>} />
       </Routes>
     </div>
