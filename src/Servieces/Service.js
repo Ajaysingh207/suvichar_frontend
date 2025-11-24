@@ -12,7 +12,15 @@ export const sendMessageApi = async (payload) => {
 };
 
 export const fetchUsers = async () => {
- 
   const res = await api.get("/allusers");
   return res.data;
 };
+export const fetchUserById = async (id) => {
+  const res = await api.get(`/user/${id}`);
+  return res.data;
+};
+export const uploadPic = async () => {
+  const res = await api.post(`/updateProfilePic`);
+  return res.data;
+};
+

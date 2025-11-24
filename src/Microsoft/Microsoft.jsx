@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../Pages/Navbar";
+// import Navbar from "../Pages/Navbar";
 import Caroussel from "../Component/Caroussel";
 import imgage1 from "../assets/win.svg";
 

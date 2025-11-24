@@ -1,7 +1,7 @@
 import React from "react";
 import lap from "../assets/lapt.avif";
 import lap1 from "../assets/lap1.avif";
-// import img1 from "../assets/lap.jpeg";
+
 
 const Caroussel = () => {
   return (

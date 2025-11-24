@@ -1,13 +1,24 @@
-// src/pages/Login.jsx
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "../context/AuthContext";
+import chatlogo from "../assets/chatlogo.avif"
+
+import {
+  Box,
+  Paper,
+  TextField,
+  Button,
+  Typography,
+  Divider,
+} from "@mui/material";
 
 export default function Facebook() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setAuthenticated } = useAuth();
 
   const sendData = async (e) => {
     e.preventDefault();
@@ -17,11 +28,12 @@ export default function Facebook() {
         { userName, password },
         { withCredentials: true }
       );
-   
-   
-      // Expect backend to return response.data.user (with _id)
+
       if (response.data.user) {
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("role", response.data.role);
+        localStorage.setItem("token", response.data.token);
+        setAuthenticated(true);
       }
 
       if (response.data.role === "user") navigate("/user/chat");
@@ -30,57 +42,74 @@ export default function Facebook() {
 
       toast.success(response.data.message || "Logged in");
     } catch (error) {
-      console.error("Login failed:", error.response?.data || error.message);
       toast.error("Login failed: " + (error.response?.data?.message || error.message));
     }
   };
 
   return (
-    <div>
-      <form>
-        <div className="container flex items-center justify-center mt-8">
-          <div className="left text-center w-1/4 mb-6">
-            <img src="./fb.jpg" alt="Facebook logo" />
-            <p className="text-2xl">
-              Facebook helps you connect and share with the people in your life.
-            </p>
-          </div>
+    <Box className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <form onSubmit={sendData} className="w-full max-w-6xl">
+        <Box className="flex flex-col md:flex-row items-center md:items-start justify-center gap-10">
 
-          <div className="right flex flex-col mx-4 w-1/4 bg-white shadow-md p-4">
-            <input
-              className="px-2 my-2 h-12 border-2 border-gray-200 hover:border-blue-400"
-              type="text"
-              placeholder="Email address or Phone number"
+          {/* Left Section */}
+          <Box className="text-center md:text-left max-w-md">
+            <img src={chatlogo} alt="Facebook logo" className="w-48 mx-auto md:mx-0" />
+            <Typography variant="h5" className="mt-4 text-orange-700 font-semibold">
+              Suvichar helps you connect and share with the people in your life.
+            </Typography>
+          </Box>
+
+          {/* Right Section (Login Card) */}
+          <Paper elevation={4} className="p-6 w-full max-w-sm rounded-lg">
+            <TextField
+              label="Email address or Phone number"
+              variant="outlined"
+              fullWidth
+              className="my-3"
               onChange={(e) => setUserName(e.target.value)}
               value={userName}
             />
-            <input
-              className="px-2 my-2 h-12 border-2 border-gray-200 hover:border-blue-400"
+
+            <TextField
+              label="Password"
               type="password"
-              value={password}
-              placeholder="Password"
+              variant="outlined"
+              fullWidth
+              className="my-3"
               onChange={(e) => setPassword(e.target.value)}
+              value={password}
             />
-            <button
-              className="my-2 py-2 bg-blue-600 rounded-md text-white text-2xl hover:bg-blue-500"
-              onClick={sendData}
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              size="large"
+              className="!bg-blue-600 hover:!bg-blue-500 text-lg font-bold my-3 py-2"
             >
-              Log in
-            </button>
-            <p className="py-2 text-center text-blue-400 hover:underline cursor-pointer">
+              Log In
+            </Button>
+
+            <Typography
+              className="text-center text-blue-600 hover:underline cursor-pointer"
+              onClick={() => alert("Password recovery")}
+            >
               Forgotten password?
-            </p>
-            <hr className="my-2" />
-            <button
-              type="button"
-              className="my-4 p-3 w-fit mx-auto font-bold text-white rounded-md bg-green-400 hover:bg-green-300"
+            </Typography>
+
+            <Divider className="my-4" />
+
+            <Button
+              fullWidth
+              variant="contained"
+              className="!bg-green-500 hover:!bg-green-400 font-bold py-2"
               onClick={() => navigate("/registar")}
             >
               Create New Account
-            </button>
-          </div>
-        </div>
+            </Button>
+          </Paper>
+        </Box>
       </form>
-    </div>
+    </Box>
   );
 }
