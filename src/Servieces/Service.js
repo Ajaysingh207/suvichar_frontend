@@ -2,12 +2,12 @@
 import api from "../api";
 
 export const fetchMessages = async (sender, receiver) => {
-  const res = await api.get(`/messages/${sender}/${receiver}`);
+  const res = await api.get(`/api/messages/${sender}/${receiver}`);
   return res.data;
 };
 
 export const sendMessageApi = async (payload) => {
-  const res = await api.post(`/send`, payload);
+  const res = await api.post(`/api/send`, payload);
   return res.data;
 };
 

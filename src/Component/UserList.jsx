@@ -338,30 +338,42 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
         </div>
 
         {/* Dropdown Menu */}
-        {open && (
-          <div className="absolute left-64 top-16 bg-white shadow-lg rounded-md w-40 p-2 z-50 border">
-            <ul className="flex flex-col gap-1">
-              <li
-                className="p-2 hover:bg-gray-100 cursor-pointer rounded flex items-center gap-2"
-                onClick={() => setOpenProfile(!openProfile)}
-              >
-                <User className="w-4 h-4" />
-                Profile
-              </li>
-              <li className="p-2 hover:bg-gray-100 cursor-pointer rounded flex items-center gap-2">
-                <Search className="w-4 h-4" />
-                Settings
-              </li>
-              <li
-                className="p-2 hover:bg-gray-100 cursor-pointer rounded text-red-600 flex items-center gap-2"
-                onClick={handleLogout}
-              >
-                <LogOut className="w-4 h-4" />
-                Logout
-              </li>
-            </ul>
-          </div>
-        )}
+      {open && (
+  <div
+    className="
+      absolute
+      top-16
+      left-64 
+      bg-white shadow-lg rounded-md w-40 p-2 z-50 border
+      md:left-64
+      sm:left-auto sm:right-4 sm:w-48
+      max-sm:fixed max-sm:top-16 max-sm:right-2 max-sm:w-48
+    "
+  >
+    <ul className="flex flex-col gap-1">
+      <li
+        className="p-2 hover:bg-gray-100 cursor-pointer rounded flex items-center gap-2"
+        onClick={() => setOpenProfile(!openProfile)}
+      >
+        <User className="w-4 h-4" />
+        Profile
+      </li>
+
+      <li className="p-2 hover:bg-gray-100 cursor-pointer rounded flex items-center gap-2">
+        <Search className="w-4 h-4" />
+        Settings
+      </li>
+
+      <li
+        className="p-2 hover:bg-gray-100 cursor-pointer rounded text-red-600 flex items-center gap-2"
+        onClick={handleLogout}
+      >
+        <LogOut className="w-4 h-4" />
+        Logout
+      </li>
+    </ul>
+  </div>
+)}
 
         {/* Profile Modal */}
         {openProfile && (
