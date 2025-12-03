@@ -23,7 +23,7 @@ export default function Fbregistar() {
     e.preventDefault();
     const formData = { name, surname, day, month, year, gender, userName: email, password };
     try {
-      const res = await api.post("/register", formData);
+      const res = await api.post("/api/register", formData);
       toast.success(res.data.message || "Registered");
     } catch (err) {
       console.error(err);

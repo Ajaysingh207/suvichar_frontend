@@ -26,7 +26,7 @@ export default function Facebook() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${apiUrl}/signup`,
+        `${apiUrl}/api/signup`,
         { userName, password },
         { withCredentials: true }
       );

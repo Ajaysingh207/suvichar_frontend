@@ -114,7 +114,7 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
   const loadMyData = async () => {
     if (!myId) return;
     try {
-      const res = await fetch(`${API_URL}/user/${myId}`, { credentials: 'include' });
+      const res = await fetch(`${API_URL}/api/user/${myId}`, { credentials: 'include' });
       const data = await res.json();
       if (res.ok && data.user) {
         setSingleUser(data.user);
@@ -135,7 +135,7 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch(`${API_URL}/allusers`, { credentials: 'include' });
+        const res = await fetch(`${API_URL}/api/allusers`, { credentials: 'include' });
         const data = await res.json();
         if (res.ok) {
           let list = data.users || data.user || [];
@@ -157,7 +157,7 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
   const handleLogout = async () => {
     try {
-      const res = await fetch(`${API_URL}/logout`, {
+      const res = await fetch(`${API_URL}/api/logout`, {
         method: 'POST',
         credentials: 'include'
       });
@@ -178,7 +178,7 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
   // Friend request actions
   const sendFriendRequest = async (toUserId) => {
     try {
-      const res = await fetch(`${API_URL}/friend/send`, {
+      const res = await fetch(`${API_URL}/api/friend/send`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -195,7 +195,7 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
   const acceptFriendRequest = async (fromUserId) => {
     try {
-      const res = await fetch(`${API_URL}/friend/accept`, {
+      const res = await fetch(`${API_URL}/api/friend/accept`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -213,7 +213,7 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
   const rejectFriendRequest = async (fromUserId) => {
     try {
-      const res = await fetch(`${API_URL}/friend/reject`, {
+      const res = await fetch(`${API_URL}/api/friend/reject`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -233,7 +233,7 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
     if (!window.confirm('Are you sure you want to block this user?')) return;
     
     try {
-      const res = await fetch(`${API_URL}/block`, {
+      const res = await fetch(`${API_URL}/api/block`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -251,7 +251,7 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
   const unblockUser = async (blockId) => {
     try {
-      const res = await fetch(`${API_URL}/unblock`, {
+      const res = await fetch(`${API_URL}/api/unblock`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -276,7 +276,7 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
     formData.append('image', file);
  
     try {
-      const res = await fetch(`${API_URL}/updateProfilePic`, {
+      const res = await fetch(`${API_URL}/api/updateProfilePic`, {
         method: 'POST',
         credentials: 'include',
         body: formData
