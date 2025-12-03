@@ -8,21 +8,14 @@ import UserChatPage from "./Pages/UserChatBox";
 import Appbar from "./Pages/Admin/Appbar";
 import PrivateRoute from "./routes/PrivateRoute";
 import AdminRoute from "./routes/AdminRoute";
-import ChatApp from "./ChatApp/ChatApp";
 
 export default function App() {
   return (
     <div>
       <ToastContainer position="top-center" autoClose={3000} />
-
       <Routes>
-      
          <Route path="/" element={<Facebook />} /> 
-        {/* <Route path="/" element={<ChatApp />} /> */}
-     
         <Route path="/registar" element={<Fbregistar />} />
-
-     
         <Route
           path="/user/chat"
           element={
