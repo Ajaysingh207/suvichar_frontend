@@ -19,12 +19,14 @@ export default function Facebook() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { setAuthenticated } = useAuth();
+ const apiUrl = import.meta.env.VITE_API_URL;
+
 
   const sendData = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/signup",
+        `${apiUrl}/signup`,
         { userName, password },
         { withCredentials: true }
       );

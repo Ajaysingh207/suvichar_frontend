@@ -21,7 +21,8 @@ let socket;
 
 export function getSocket() {
   if (!socket) {
-    socket = io("http://localhost:3000", { withCredentials: true });
+    const url = import.meta.env.VITE_SOCKET_URL;
+    socket = io(url, { withCredentials: true });
   }
   return socket;
 }

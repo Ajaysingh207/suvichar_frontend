@@ -9,6 +9,7 @@ import UserChatPage from "./Pages/UserChatBox";
 import Appbar from "./Pages/Admin/Appbar";
 import PrivateRoute from "./routes/PrivateRoute";
 import AdminRoute from "./routes/AdminRoute";
+import ChatApp from "./ChatApp/ChatApp";
 
 export default function App() {
   return (
@@ -17,7 +18,8 @@ export default function App() {
 
       <Routes>
       
-        <Route path="/" element={<Facebook />} />
+         <Route path="/" element={<Facebook />} /> 
+        {/* <Route path="/" element={<ChatApp />} /> */}
         <Route path="/microsoft" element={<Microsoft />} />
         <Route path="/registar" element={<Fbregistar />} />
 
@@ -30,7 +32,6 @@ export default function App() {
             </PrivateRoute>
           }
         />
-
         <Route
           path="/appbar"
           element={
@@ -39,8 +40,6 @@ export default function App() {
             </PrivateRoute>
           }
         />
-
-      
         <Route
           path="/admin"
           element={
