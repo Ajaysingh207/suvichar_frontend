@@ -1,6 +1,5 @@
 import React from "react";
 import Facebook from "./Facebook/Facebook";
-import Microsoft from "./Microsoft/Microsoft";
 import Fbregistar from "./Facebook/Fbregistar";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -20,7 +19,7 @@ export default function App() {
       
          <Route path="/" element={<Facebook />} /> 
         {/* <Route path="/" element={<ChatApp />} /> */}
-        <Route path="/microsoft" element={<Microsoft />} />
+     
         <Route path="/registar" element={<Fbregistar />} />
 
      
